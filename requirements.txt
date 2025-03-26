@@ -1,0 +1,4 @@
+tiktoken
+ollama
+chromadb
+langchain-text-splitters
