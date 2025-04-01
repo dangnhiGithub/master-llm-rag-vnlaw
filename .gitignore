@@ -1,6 +1,7 @@
 data/
 notebooks_Nhi/
 data.*
+trained_embedding_model/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
