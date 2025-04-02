@@ -1,7 +1,8 @@
 data/
 notebooks_Nhi/
 data.*
-trained_embedding_model/
+models/
+chroma_db/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
