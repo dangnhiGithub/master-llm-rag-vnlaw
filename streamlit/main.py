@@ -67,17 +67,18 @@ db = Chroma(
     persist_directory='./chroma_db',
     collection_name="VNLaws",
 )
-vectorstore_retriever = db.as_retriever(search_kwargs={"k": 10})
-
 stored_data = db._collection.get()
 zip_doc = list(zip(stored_data["documents"], stored_data["metadatas"]))
 docs = [Document(page_content=doc, metadata=metadata)
         for doc, metadata in zip_doc]
-keyword_retriever = BM25Retriever.from_documents(docs, search_kwargs={"k": 10})
-ensemble_retriever = EnsembleRetriever(
-    retrievers=[vectorstore_retriever, keyword_retriever], weights=[0.5, 0.5])
 
-ollama_api_url = "https://87ea-35-201-213-122.ngrok-free.app/"  # Thay đổi mỗi lần host
+
+vectorstore_retriever = db.as_retriever(search_kwargs={"k": 10})
+keyword_retriever = BM25Retriever.from_documents(docs, search_kwargs={"k": 10})
+ensemble_retriever = EnsembleRetriever(retrievers=[vectorstore_retriever, keyword_retriever], weights=[0.5, 0.5])
+
+
+ollama_api_url = "https://574d-35-237-162-13.ngrok-free.app/"  # Thay đổi mỗi lần host
 
 ollama_client = ollama.Client(
     host=ollama_api_url,
